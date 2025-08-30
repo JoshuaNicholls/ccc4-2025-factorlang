@@ -842,7 +842,7 @@ def handle_category(category_name, category_dict, numeric_values, linguistic_pro
                 # if result == "back", stay in this menu and let user continue
             else:
                 print(f"No further dictionary found for {prop}. Returning up.")
-                return "done"  # climb up until we reach a branching point
+                return "back"  # go back one level
         
         else:
             print(f"Invalid {category_name} choice. Try again.")
