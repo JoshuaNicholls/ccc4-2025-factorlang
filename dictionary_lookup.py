@@ -795,10 +795,6 @@ to_move_dict = {
     "-2": ""
 }
 
-# Running lists
-numeric_values = []
-linguistic_properties = []
-
 def print_dict_options(d):
     """Pretty-print dictionary options"""
     for key, value in d.items():
@@ -814,49 +810,39 @@ def handle_category(category_name, category_dict, numeric_values, linguistic_pro
         numeric_values (list): List to append the numeric key
         linguistic_properties (list): List to append the chosen property
     """
-    print(f"\nChoose a {category_name} root:")
-    print_dict_options(category_dict)
-    choice = input("Type option: ")
-    
-    if choice in category_dict:
-        prop = category_dict[choice]
-        numeric_values.append(choice)
-        linguistic_properties.append(prop)
-        print(f"Added {category_name} root: {prop} ({choice})")
+    while True:
+        # print(f"DEBUG: Entered handle_category with {category_name}, dict has {len(category_dict)} items")
+        print(f"\nChoose a {category_name}:")
+        print_dict_options(category_dict)
+        choice = input("Type option (or q to quit): ")
         
-        # recursive step: see if this selection has its own dict
-        dict_name = f"{prop.lower()}_dict"
-        if dict_name in globals():
-            next_dict = globals()[dict_name]
-            handle_category(prop.lower(), next_dict, numeric_values, linguistic_properties)
-    else:
-        print(f"Invalid {category_name} choice.")
-
-while True:
-    print("\nChoose part of speech:")
-    print_dict_options(pos_dict)
-    choice = input("Type option (or q to quit): ")
-    
-    if choice.lower() == "q":
-        break
-
-    if choice in pos_dict:
-        prop = pos_dict[choice]
-        numeric_values.append(choice)
-        linguistic_properties.append(prop)
-        print(f"Added: {prop} ({choice})")
-
-        # dynamically construct dictionary variable name and get it from globals()
-        dict_name = f"{prop.lower()}_dict"
-        print(f"Looking for dictionary: {dict_name}")
-        category_dict = globals().get(dict_name)
-
-        if category_dict:  # only call if dictionary exists
-            handle_category(prop.lower(), category_dict, numeric_values, linguistic_properties)
+        if choice.lower() == "q":
+            return  # exit recursion
+        
+        if choice in category_dict:
+            prop = category_dict[choice]
+            numeric_values.append(choice)
+            linguistic_properties.append(prop)
+            print(f"Added {category_name}: {prop} ({choice})")
+            
+            # recursive step: see if this selection has its own dict
+            dict_name = f"{prop.lower()}_dict"
+            if dict_name in globals():
+                next_dict = globals()[dict_name]
+                handle_category(prop.lower(), next_dict, numeric_values, linguistic_properties)
+            return  # after valid selection, stop loop here (avoid infinite repeats)
+        
         else:
-            print(f"No dictionary found for {prop}.")
-    else:
-        print("Invalid choice. Try again.")
+            print(f"Invalid {category_name} choice. Try again.")
+
+# --- ENTRY POINT ---
+numeric_values = []
+linguistic_properties = []
+
+# print("DEBUG: pos_dict is", pos_dict)
+# print("DEBUG: type(pos_dict) is", type(pos_dict))
+
+handle_category("part of speech", pos_dict, numeric_values, linguistic_properties)
 
 print("\nFinal Results:")
 print("Numeric values:", numeric_values)
