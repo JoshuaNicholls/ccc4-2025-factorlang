@@ -834,9 +834,14 @@ def handle_category(category_name, category_dict, numeric_values, linguistic_pro
             next_dict = globals().get(dict_name)
             
             if next_dict:
-                handle_category(prop.lower(), next_dict, numeric_values, linguistic_properties)
+                result = handle_category(prop.lower(), next_dict, numeric_values, linguistic_properties)
+                if result == "done":
+                    # leaf reached → bubble all the way up
+                    return "done"
+                # if result == "back", stay in this menu and let user continue
             else:
-                print(f"No further dictionary found for {prop}.")
+                print(f"No further dictionary found for {prop}. Returning up.")
+                return "done"  # climb up until we reach a branching point
         
         else:
             print(f"Invalid {category_name} choice. Try again.")
