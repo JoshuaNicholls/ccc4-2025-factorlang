@@ -803,9 +803,30 @@ def print_dict_options(d):
     """Pretty-print dictionary options"""
     for key, value in d.items():
         print(f"{key}: {value}")
+        
+def handle_category(category_name, category_dict, numeric_values, linguistic_properties):
+    """
+    Generic handler for selecting an item from any category dictionary.
+    
+    Args:
+        category_name (str): Name of the category (e.g., "noun", "verb")
+        category_dict (dict): The dictionary of options for this category
+        numeric_values (list): List to append the numeric key
+        linguistic_properties (list): List to append the chosen property
+    """
+    print(f"\nChoose a {category_name} root:")
+    print_dict_options(category_dict)
+    choice = input("Type option: ")
+    
+    if choice in category_dict:
+        prop = category_dict[choice]
+        numeric_values.append(int(choice))
+        linguistic_properties.append(prop)
+        print(f"Added {category_name} root: {prop} ({choice})")
+    else:
+        print(f"Invalid {category_name} choice.")
 
 while True:
-     # Step 1: Choose part of speech
     print("\nChoose part of speech:")
     print_dict_options(pos_dict)
     choice = input("Type option (or q to quit): ")
@@ -815,34 +836,17 @@ while True:
 
     if choice in pos_dict:
         prop = pos_dict[choice]
-        numeric_values.append(int(choice))
+        numeric_values.append(int(choice) if choice.lstrip("-").isdigit() else 0)
         linguistic_properties.append(prop)
         print(f"Added: {prop} ({choice})")
 
-        # Step 2: If Noun, prompt for noun root
-        if prop == "Noun":
-            print("\nChoose a noun root:")
-            print_dict_options(noun_dict)
-            noun_choice = input("Type option: ")
-            if noun_choice in noun_dict:
-                noun_prop = noun_dict[noun_choice]
-                numeric_values.append(int(noun_choice))
-                linguistic_properties.append(noun_prop)
-                print(f"Added noun root: {noun_prop} ({noun_choice})")
-            else:
-                print("Invalid noun choice.")
+        # dynamically construct dictionary variable name and get it from globals()
+        dict_name = f"{prop.lower()}_dict"
+        category_dict = globals().get(dict_name)
 
-        elif prop == "Verb":
-            print("\nChoose a verb root:")
-            print_dict_options(verb_dict)
-            verb_choice = input("Type option: ")
-            if verb_choice in verb_dict:
-                verb_prop = verb_dict[verb_choice]
-                numeric_values.append(int(verb_choice))
-                linguistic_properties.append(verb_prop)
-                print(f"Added noun root: {verb_prop} ({verb_choice})")
-            else:
-                print("Invalid verb choice.")
+        if category_dict:  # only call if dictionary exists
+            handle_category(prop.lower(), category_dict, numeric_values, linguistic_properties)
+
     else:
         print("Invalid choice. Try again.")
 
