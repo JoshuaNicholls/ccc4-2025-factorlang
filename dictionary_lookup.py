@@ -820,7 +820,7 @@ def handle_category(category_name, category_dict, numeric_values, linguistic_pro
     
     if choice in category_dict:
         prop = category_dict[choice]
-        numeric_values.append(int(choice))
+        numeric_values.append(choice)
         linguistic_properties.append(prop)
         print(f"Added {category_name} root: {prop} ({choice})")
     else:
@@ -836,7 +836,7 @@ while True:
 
     if choice in pos_dict:
         prop = pos_dict[choice]
-        numeric_values.append(int(choice) if choice.lstrip("-").isdigit() else 0)
+        numeric_values.append(choice)
         linguistic_properties.append(prop)
         print(f"Added: {prop} ({choice})")
 
