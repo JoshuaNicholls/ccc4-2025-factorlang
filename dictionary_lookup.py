@@ -810,8 +810,12 @@ def handle_category(category_name, category_dict, numeric_values, linguistic_pro
         numeric_values (list): List to append the numeric key
         linguistic_properties (list): List to append the chosen property
     """
+    if not category_dict:
+        print(f"[ERROR] No dictionary available for {category_name}. Returning to previous menu.")
+        return
+    
     while True:
-        # print(f"DEBUG: Entered handle_category with {category_name}, dict has {len(category_dict)} items")
+        print(f"DEBUG: Entered handle_category with {category_name}, dict has {len(category_dict)} items")
         print(f"\nChoose a {category_name}:")
         print_dict_options(category_dict)
         choice = input("Type option (or q to quit): ")
@@ -827,10 +831,12 @@ def handle_category(category_name, category_dict, numeric_values, linguistic_pro
             
             # recursive step: see if this selection has its own dict
             dict_name = f"{prop.lower()}_dict"
-            if dict_name in globals():
-                next_dict = globals()[dict_name]
+            next_dict = globals().get(dict_name)
+            
+            if next_dict:
                 handle_category(prop.lower(), next_dict, numeric_values, linguistic_properties)
-            return  # after valid selection, stop loop here (avoid infinite repeats)
+            else:
+                print(f"No further dictionary found for {prop}.")
         
         else:
             print(f"Invalid {category_name} choice. Try again.")
@@ -839,10 +845,10 @@ def handle_category(category_name, category_dict, numeric_values, linguistic_pro
 numeric_values = []
 linguistic_properties = []
 
-# print("DEBUG: pos_dict is", pos_dict)
-# print("DEBUG: type(pos_dict) is", type(pos_dict))
-
-handle_category("part of speech", pos_dict, numeric_values, linguistic_properties)
+if "pos_dict" not in globals() or not pos_dict:
+    print("[FATAL] pos_dict is missing or empty — cannot start.")
+else:
+    handle_category("part of speech", pos_dict, numeric_values, linguistic_properties)
 
 print("\nFinal Results:")
 print("Numeric values:", numeric_values)
