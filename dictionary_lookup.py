@@ -842,11 +842,13 @@ while True:
 
         # dynamically construct dictionary variable name and get it from globals()
         dict_name = f"{prop.lower()}_dict"
+        print(f"Looking for dictionary: {dict_name}")
         category_dict = globals().get(dict_name)
 
-        #if category_dict:  # only call if dictionary exists
-        #    handle_category(prop.lower(), category_dict, numeric_values, linguistic_properties)
-
+        if category_dict:  # only call if dictionary exists
+            handle_category(prop.lower(), category_dict, numeric_values, linguistic_properties)
+        else:
+            print(f"No dictionary found for {prop}.")
     else:
         print("Invalid choice. Try again.")
 
