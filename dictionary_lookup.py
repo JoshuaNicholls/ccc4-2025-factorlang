@@ -475,6 +475,326 @@ evidentiality_dict = {
     "-7": "Guaran'ee vis did no' 'appen"
 }
 
+# Gender (Cat + num)
+gender_dict = {
+    "1": "Agender",
+    "2": "Female ~ Gender",
+    "3": "Male ~ Gendersquared",
+    "5": "Third ~ Thirdgender",
+    "7": "Twothirds ~ Twothirdsgender",
+    "11": "Quarter ~ Quartergender",
+    "13": "Threequarters ~ Threequartersgender",
+    "17": "Fifth ~ Fifthgender",
+    "19": "Twofifths ~ Twofifthsgender",
+    "-1": "Omnigender - Genderinfinity",
+    "-2": "Female / Male Bigender",
+    "-3": "Female / Third Bigender",
+    "-5": "Female / Twothirds Bigender",
+    "-7": "Third / Twothirds Bigender",
+    "-11": "Female / Third / Twothirds Trigender",
+    "-13": "Female / Quarter Bigender",
+    "-17": "Female / Threequarters Bigender",
+    "-19": "Male / Quarter Bigender",
+    "-23": "Male / Threequarters Bigender",
+    "-29": "Quarter / Threequarters Bigender",
+    "-31": "Female / Male / Quarter Trigender",
+    "-37": "Female / Male / Threequarters Trigender",
+    "-41": "Female / Quarter / Threequarters Trigender",
+    "-43": "Male / Quarter / Threequarters Trigender",
+    "-47": "Female / Male / Quarter / Threequarters Tetragender"
+    # ...etc.
+}
+
+# Gender (Cat + num modifiers)
+gender_mod_dict = {
+    "0": "Agender",
+    "1": "-",
+    "2": "Hyper-",
+    "-2": "Demi-"
+}
+
+# Flavour
+flavour_dict = {
+    "1": "Flavour",
+    "2": "Salty",
+    "3": "Sour",
+    "5": "Bitter",
+    "7": "Sweet",
+    "11": "Savoury",
+    "13": "Radioactive",
+    "-1": "?",
+    "-2": "?"
+}
+
+# Person
+person_dict = {
+    "1": "Personal",
+    "2": "1st",
+    "3": "2nd",
+    "5": "3rd",
+    "7": "4th",
+    "-1": "Non-personal",
+    "-2": "Demonstrative",
+    "-3": "Interrogative",
+    "-5": "Relative"
+    # ...etc.
+}
+
+# To be
+to_be_dict = {
+    "1": "",
+    "2": "",
+    "-1": "",
+    "-2": ""
+}
+
+# Consumption
+consumption_dict = {
+    "1": "",
+    "2": "",
+    "-1": "",
+    "-2": ""
+}
+
+# To consume
+to_consume_dict = {
+    "1": "Consume",
+    "2": "Eat",
+    "3": "Devour",
+    "-1": "",
+    "-2": ""
+}
+
+# Destruction
+destruction_dict = {
+    "1": "",
+    "2": "",
+    "-1": "",
+    "-2": ""
+}
+
+# To destroy
+to_destroy_dict = {
+    "1": "",
+    "2": "",
+    "-1": "",
+    "-2": ""
+}
+
+# Product / creation
+product_creation_dict = {
+    "1": "",
+    "2": "creation",
+    "3": "creator",
+    "-1": "",
+    "-2": ""
+}
+
+# To produce / create
+to_produce_dict = {
+    "1": "",
+    "2": "",
+    "-1": "",
+    "-2": ""
+}
+
+# A being / living thing / essence
+being_dict = {
+    "1": "",
+    "2": "",
+    "-1": "",
+    "-2": ""
+}
+
+# To be alive / have essence
+to_be_alive_dict = {
+    "1": "",
+    "2": "",
+    "-1": "",
+    "-2": ""
+}
+
+# Object / possession
+object_dict = {
+    "1": "",
+    "2": "",
+    "-1": "",
+    "-2": ""
+}
+
+# To have
+to_have_dict = {
+    "1": "",
+    "2": "",
+    "-1": "",
+    "-2": ""
+}
+
+# Good
+good_dict = {
+    "1": "",
+    "2": "",
+    "-1": "",
+    "-2": ""
+}
+
+# To like
+to_like_dict = {
+    "1": "like",
+    "2": "love",
+    "-1": "dislike",
+    "-2": "hate"
+}
+
+# Sensation / observation
+sensation_dict = {
+    "1": "",
+    "2": "",
+    "-1": "",
+    "-2": ""
+}
+
+# To sense / observe
+to_sense_dict = {
+    "1": "",
+    "2": "",
+    "-1": "",
+    "-2": ""
+}
+
+# Feeling / emotion
+feeling_dict = {
+    "1": "",
+    "2": "",
+    "-1": "",
+    "-2": ""
+}
+
+# To feel / have emotion
+to_feel_dict = {
+    "1": "",
+    "2": "",
+    "-1": "",
+    "-2": ""
+}
+
+# Attractiveness
+attractiveness_dict = {
+    "1": "",
+    "2": "",
+    "-1": "",
+    "-2": ""
+}
+
+# To attract / repel
+to_attract_dict = {
+    "1": "",
+    "2": "",
+    "-1": "",
+    "-2": ""
+}
+
+# Physical properties
+physical_props_dict = {
+    "1": "Property",
+    "2": "Quantity",
+    "3": "Mass",
+    "5": "Time",
+    "7": "Length",
+    "11": "Temperature",
+    "13": "Current",
+    "17": "Luminosity",
+    "-1": "",
+    "-2": "Antimass"
+}
+
+# Rule / ruler
+rule_dict = {
+    "1": "rule",
+    "2": "rule / reign",
+    "3": "majesty",
+    "-1": "",
+    "-2": ""
+}
+
+# To rule
+to_rule_dict = {
+    "1": "to rule",
+    "2": "to rule",
+    "3": "to have ruling qualities",
+    "-1": "",
+    "-2": ""
+}
+
+# Combination
+combination_dict = {
+    "1": "",
+    "2": "",
+    "-1": "",
+    "-2": ""
+}
+
+# To combine
+to_combine_dict = {
+    "1": "",
+    "2": "to combine 2 things",
+    "3": "to assimilate something into a whole",
+    "-1": "",
+    "-2": ""
+}
+
+# Covering / concealment
+covering_dict = {
+    "1": "",
+    "2": "covered",
+    "3": "covering / coverer",
+    "-1": "uncovered / revealed",
+    "-2": "uncovering / revealer"
+}
+
+# To cover / conceal
+to_cover_dict = {
+    "1": "",
+    "2": "",
+    "3": "",
+    "-1": "",
+    "-2": ""
+}
+
+# Distortion / bending
+distortion_dict = {
+    "1": "",
+    "2": "",
+    "-1": "",
+    "-2": ""
+}
+
+# To bend / distort
+to_bend_dict = {
+    "1": "to bend",
+    "2": "to distort",
+    "-1": "",
+    "-2": ""
+}
+
+# Travel / movement
+travel_dict = {
+    "1": "movement",
+    "2": "travel",
+    "3": "transport",
+    "-1": "",
+    "-2": ""
+}
+
+# To move / transport
+to_move_dict = {
+    "1": "to move",
+    "2": "to travel",
+    "3": "to transport",
+    "-1": "",
+    "-2": ""
+}
+
 # Running lists
 numeric_values = []
 linguistic_properties = []
