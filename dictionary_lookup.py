@@ -823,6 +823,12 @@ def handle_category(category_name, category_dict, numeric_values, linguistic_pro
         numeric_values.append(choice)
         linguistic_properties.append(prop)
         print(f"Added {category_name} root: {prop} ({choice})")
+        
+        # recursive step: see if this selection has its own dict
+        dict_name = f"{prop.lower()}_dict"
+        if dict_name in globals():
+            next_dict = globals()[dict_name]
+            handle_category(prop.lower(), next_dict, numeric_values, linguistic_properties)
     else:
         print(f"Invalid {category_name} choice.")
 
