@@ -101,7 +101,109 @@ tense_dict = {
     "-23": "Eternal Past (Beginning of time)"
 }
 
+position_dict = {
+    "1": "Right>Left",
+    "2": "1st",
+    "3": "2nd",
+    "5": "3rd",
+    "7": "…",
+    "-1": "Left>Right",
+    "-2": "-1st",
+    "-3": "-2nd",
+    "-5": "…"
+}
 
+phoneme_dict = {
+    "1": "?",
+    "2": "Consonant",
+    "3": "ʔ (vowel separator)",
+    "5": "q",
+    "7": "ć",
+    "11": "t",
+    "13": "p",
+    "17": "j",
+    "19": "d",
+    "23": "b",
+    "29": "h",
+    "31": "x",
+    "37": "ś",
+    "41": "s",
+    "43": "þ",
+    "47": "f",
+    "53": "xh",
+    "59": "g",
+    "61": "ź",
+    "67": "z",
+    "71": "ð",
+    "73": "v",
+    "79": "ng",
+    "83": "ŋ",
+    "89": "n",
+    "97": "m",
+    "101": "r",
+    "103": "l",
+    "107": "hw",
+    "109": "y",
+    "-1": "?",
+    "-2": "Vowel",
+    "-3": "à (consonant separator)",
+    "-5": "ā",
+    "-7": "ae",
+    "-11": "ä",
+    "-13": "o",
+    "-17": "ö",
+    "-19": "e",
+    "-23": "ü",
+    "-29": "u",
+    "-31": "i",
+    "-37": "ã",
+    "-41": "āe",
+    "-43": "â",
+    "-47": "oi",
+    "-53": "öü",
+    "-59": "àu",
+    "-61": "ài",
+    "-67": "ū",
+    "-71": "û",
+    "-73": "ī"
+}
+
+tone_dict = {
+    "1": "Steady tone",
+    "2": "High",
+    "3": "Low",
+    "5": "Mid / None",
+    "7": "High-Mid",
+    "11": "Low-Mid",
+    "-1": "Tone contour",
+    "-2": "High-to-Low",
+    "-3": "Low-to-High",
+    "-5": "High-to-Mid",
+    "-7": "Mid-to-Low",
+    "-11": "Mid-to-High",
+    "-13": "Low-to-Mid"
+}
+
+syllabification_dict = {
+    "1": "Asyllabic Consonant",
+    "2": "Syllabic Consonant",
+    "-1": "Aconsonantal Vowel",
+    "-2": "Consonantal Vowel"
+}
+
+nasalisation_dict = {
+    "1": "Oral",
+    "2": "Nasal",
+    "-1": "?",
+    "-2": "?"
+}
+
+movement_dict = {
+    "1": "?",
+    "2": "?",
+    "-1": "?",
+    "-2": "?"
+}
 
 # Running lists
 numeric_values = []
