@@ -821,7 +821,8 @@ def handle_category(category_name, category_dict, numeric_values, linguistic_pro
         choice = input("Type option (or q to quit): ")
         
         if choice.lower() == "q":
-            return  # exit recursion
+            print(f"Returning from {category_name} menu.")
+            return "back"  # go back one level
         
         if choice in category_dict:
             prop = category_dict[choice]
