@@ -10,8 +10,8 @@ pos_dict = {
 noun_dict = {
     "2": "Case",
     "3": "Number",
-    "5": "Size / Shape",
-    "7": "Sign",
+    "5": "Size",
+    "7": "Element",
     "11": "Animacy",
     "13": "Gender",
     "17": "Pronoun",
@@ -255,6 +255,7 @@ dance_dict = {
 }
 
 size_dict = {
+    "0": "Shape",
     "1": "Small Size",
     "2": "Indefinite",
     "3": "Seed",
@@ -341,6 +342,7 @@ person_number_dict = {
 }
 
 element_dict = {
+    "0": "Cardinality",
     "1": "Terrestrial Element",
     "2": "Metal",
     "3": "Wood",
@@ -365,6 +367,7 @@ cardinality_dict = {
 }
 
 voice_dict = {
+    "0": "Transitivity",
     "1": "Positive Voice",
     "2": "Active",
     "3": "Passive",
@@ -421,10 +424,10 @@ animacy_dict = {
     "-47": "Universe"
 }
 
-animal_type_high_dict = {
-    "1": "Medium Animal",
+high_animal_dict = {
+    "1": "High Animal",
     "2": "Beast",
-    "3": "Fish",
+    "3": "Dog",
     "5": "Small Reptile",
     "-1": "",
     "-2": "",
@@ -432,7 +435,7 @@ animal_type_high_dict = {
     "-5": ""
 }
 
-animal_small_reptile_dict = {
+small_reptile_dict = {
     "1": "",
     "2": "Serpent",
     "3": "Tortoise",
@@ -444,6 +447,7 @@ animal_small_reptile_dict = {
 }
 
 mood_dict = {
+    "0": "Evidentiality",
     "1": "Realis",
     "2": "Indicative",
     "3": "Imperative",
@@ -477,6 +481,7 @@ evidentiality_dict = {
 
 # Gender (Cat + num)
 gender_dict = {
+    "0": "Gender Mod",
     "1": "Agender",
     "2": "Female ~ Gender",
     "3": "Male ~ Gendersquared",
@@ -800,6 +805,11 @@ def print_dict_options(d):
     for key, value in d.items():
         print(f"{key}: {value}")
         
+def to_dict_name(dict_part):
+    underscore = dict_part.replace(" ", "_")
+    lowered = underscore.lower()
+    return lowered
+        
 def handle_category(category_name, category_dict, numeric_values, linguistic_properties):
     """
     Generic handler for selecting an item from any category dictionary.
@@ -813,9 +823,13 @@ def handle_category(category_name, category_dict, numeric_values, linguistic_pro
     if not category_dict:
         print(f"[ERROR] No dictionary available for {category_name}. Returning to previous menu.")
         return
+    # print("DEBUG: i'm in")
     
     while True:
-        print(f"DEBUG: Entered handle_category with {category_name}, dict has {len(category_dict)} items")
+        # remove 0 from options list
+        removed_zero = category_dict.pop("0", None)
+        
+        print(f"\nDEBUG: Entered handle_category with {category_name}, dict has {len(category_dict)} items")
         print(f"\nChoose a {category_name}:")
         print_dict_options(category_dict)
         choice = input("Type option (or q to quit): ")
@@ -824,18 +838,26 @@ def handle_category(category_name, category_dict, numeric_values, linguistic_pro
             print(f"Returning from {category_name} menu.")
             return "back"  # go back one level
         
-        if choice in category_dict:
+        if choice in category_dict and choice != "0":
             prop = category_dict[choice]
             numeric_values.append(choice)
             linguistic_properties.append(prop)
             print(f"Added {category_name}: {prop} ({choice})")
             
-            # recursive step: see if this selection has its own dict
-            dict_name = f"{prop.lower()}_dict"
+            # if this dict has a higher layer that is not a choosable option, recall the removed 0
+            if removed_zero is not None:
+                dict_part = removed_zero
+            else:
+                # see if this selection has its own dict
+                dict_part = prop
+            
+            # see if this selection has its own dict
+            dict_name = f"{to_dict_name(dict_part)}_dict"
             next_dict = globals().get(dict_name)
             
             if next_dict:
-                result = handle_category(prop.lower(), next_dict, numeric_values, linguistic_properties)
+                # recursive step: 
+                result = handle_category(dict_part, next_dict, numeric_values, linguistic_properties)
                 if result == "done":
                     # leaf reached → bubble all the way up
                     return "done"
@@ -850,11 +872,14 @@ def handle_category(category_name, category_dict, numeric_values, linguistic_pro
 # --- ENTRY POINT ---
 numeric_values = []
 linguistic_properties = []
+category_name = "part of speech"
+category_dict = pos_dict
 
 if "pos_dict" not in globals() or not pos_dict:
     print("[FATAL] pos_dict is missing or empty — cannot start.")
 else:
-    handle_category("part of speech", pos_dict, numeric_values, linguistic_properties)
+    # print(f"DEBUG: About to handle category {category_name}")
+    handle_category(category_name, category_dict, numeric_values, linguistic_properties)
 
 print("\nFinal Results:")
 print("Numeric values:", numeric_values)
