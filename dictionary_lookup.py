@@ -800,14 +800,23 @@ to_move_dict = {
     "-2": ""
 }
 
+replacement_key_dict = {
+    "Pronoun" : "Person"
+}
+
 def print_dict_options(d):
     """Pretty-print dictionary options"""
     for key, value in d.items():
         print(f"{key}: {value}")
         
 def to_dict_name(dict_part):
-    underscore = dict_part.replace(" ", "_")
+    for key, value in replacement_key_dict.items():
+        # print(f"DEBUG: key = {key}, value = {value}")
+        replaced = dict_part.replace(str(key), str(value))
+    # print(f"DEBUG: replaced = {replaced}")
+    underscore = replaced.replace(" ", "_")
     lowered = underscore.lower()
+    # print(f"DEBUG: lowered = {lowered}")
     return lowered
         
 def handle_category(category_name, category_dict, numeric_values, linguistic_properties):
@@ -844,15 +853,15 @@ def handle_category(category_name, category_dict, numeric_values, linguistic_pro
             linguistic_properties.append(prop)
             print(f"Added {category_name}: {prop} ({choice})")
             
-            # if this dict has a higher layer that is not a choosable option, recall the removed 0
             if removed_zero is not None:
+                # if this dict has a higher layer that is not a choosable option, recall the removed 0
                 dict_part = removed_zero
             else:
-                # see if this selection has its own dict
                 dict_part = prop
             
             # see if this selection has its own dict
             dict_name = f"{to_dict_name(dict_part)}_dict"
+            # print(f"DEBUG: dict_name = {dict_name}")
             next_dict = globals().get(dict_name)
             
             if next_dict:
