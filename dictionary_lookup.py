@@ -801,7 +801,10 @@ to_move_dict = {
 }
 
 replacement_key_dict = {
-    "Pronoun" : "Person"
+    "Pronoun" : "Person",
+    "Adjectival": "Case",
+    "Genitive": "Case",
+    "Partitive": "Case"
 }
 
 def print_dict_options(d):
@@ -811,12 +814,13 @@ def print_dict_options(d):
         
 def to_dict_name(dict_part):
     for key, value in replacement_key_dict.items():
-        # print(f"DEBUG: key = {key}, value = {value}")
+        print(f"DEBUG: dict_part = {dict_part}, key = {key}, value = {value}")
         replaced = dict_part.replace(str(key), str(value))
-    # print(f"DEBUG: replaced = {replaced}")
+        # replaced = dict_part.replace("Adjectival", "Case")
+    print(f"DEBUG: replaced = {replaced}")
     underscore = replaced.replace(" ", "_")
     lowered = underscore.lower()
-    # print(f"DEBUG: lowered = {lowered}")
+    print(f"DEBUG: lowered = {lowered}")
     return lowered
         
 def handle_category(category_name, category_dict, numeric_values, linguistic_properties):
